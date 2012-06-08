@@ -9,14 +9,14 @@ app.models.Quote = Backbone.Model.extend({
 
 app.collections.Quotes = Backbone.Collection.extend({
   model: app.models.Quote,
-  url: 'http://search.twitter.com/search.json?q=from:enjoythesewords',
+  url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=enjoythesewords&count=100',
   sync: function(method, model, options){  
     options.timeout = 10000;  
     options.dataType = "jsonp";  
     return Backbone.sync(method, model, options);  
   },
   parse: function(response) {
-    return response.results;
+    return response;
   }
 })
 
